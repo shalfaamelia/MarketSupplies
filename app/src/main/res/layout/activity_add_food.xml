@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Id"
+        android:inputType="number"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etNamaMakanan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nama Makanan"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etId" />
+
+    <EditText
+        android:id="@+id/etBeratMakanan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Berat Makanan"
+        android:inputType="number"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNamaMakanan" />
+
+    <EditText
+        android:id="@+id/etJumlahStokMakanan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Jumlah Stok"
+        android:inputType="number"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etBeratMakanan" />
+
+    <Button
+        android:id="@+id/btnSimpan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simpan"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etJumlahStokMakanan" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
