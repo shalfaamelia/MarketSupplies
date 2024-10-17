@@ -5,7 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.shalfa.marketsupplies.entity.KebutuhanEntity
 import com.shalfa.marketsupplies.entity.MakananEntity
+import com.shalfa.marketsupplies.entity.MinumanEntity
 
 class MarketAdapter : RecyclerView.Adapter<MarketAdapter.MarketViewHolder>() {
     private var items: List<Any> = emptyList()

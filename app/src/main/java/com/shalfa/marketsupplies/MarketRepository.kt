@@ -1,7 +1,12 @@
 package com.shalfa.marketsupplies
 
 import androidx.lifecycle.LiveData
+import com.shalfa.marketsupplies.dao.KebutuhanDao
+import com.shalfa.marketsupplies.dao.MakananDao
+import com.shalfa.marketsupplies.dao.MinumanDao
+import com.shalfa.marketsupplies.entity.KebutuhanEntity
 import com.shalfa.marketsupplies.entity.MakananEntity
+import com.shalfa.marketsupplies.entity.MinumanEntity
 
 class MarketRepository(
     private val makananDao: MakananDao,

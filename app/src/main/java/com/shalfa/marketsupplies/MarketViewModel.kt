@@ -4,7 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.shalfa.marketsupplies.entity.KebutuhanEntity
 import com.shalfa.marketsupplies.entity.MakananEntity
+import com.shalfa.marketsupplies.entity.MinumanEntity
 import kotlinx.coroutines.launch
 
 class MarketViewModel(application: Application) : AndroidViewModel(application) {
