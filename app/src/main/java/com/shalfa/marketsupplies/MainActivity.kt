@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             val namaMakanan = result.data?.getStringExtra("EXTRA_NAMA_MAKANAN") ?: ""
-            val beratMakanan = result.data?.getDoubleExtra("EXTRA_BERAT_MAKANAN", 0.0) ?: 0.0
+            val beratMakanan = result.data?.getIntExtra("EXTRA_BERAT_MAKANAN", 0) ?: 0
             val jumlahStokMakanan = result.data?.getIntExtra("EXTRA_JUMLAH_STOK", 0) ?: 0
 
             // Insert data ke database, id will be auto-generated
