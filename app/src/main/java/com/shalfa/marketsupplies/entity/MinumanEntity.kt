@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 @Entity (tableName = "minuman_table")
 data class MinumanEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val nama: String,
-    val berat: Int,
-    val stok: Int
+    val namaMinuman: String,
+    val beratMinuman: Int,
+    val jumlahStok: Int
 )
 

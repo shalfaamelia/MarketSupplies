@@ -1,6 +1,5 @@
 package com.shalfa.marketsupplies
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -17,7 +16,6 @@ class FoodActivity : AppCompatActivity() {
 
     private val viewModel: FoodViewModel by viewModels()
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food)

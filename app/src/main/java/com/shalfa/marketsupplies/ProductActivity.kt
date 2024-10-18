@@ -25,6 +25,14 @@ class ProductActivity : AppCompatActivity() {
                     val intent = Intent(this, FoodActivity::class.java)
                     startActivity(intent)
                 }
+                "Minuman" -> {
+                    val intent = Intent(this, DrinkActivity::class.java)
+                    startActivity(intent)
+                }
+                "Kebutuhan Sehari-hari" -> {
+                    val intent = Intent(this, DailyNeedsActivity::class.java)
+                    startActivity(intent)
+                }
                 else -> {
                     Toast.makeText(this, "Kategori $category belum tersedia", Toast.LENGTH_SHORT).show()
                 }

@@ -37,5 +37,20 @@
             android:name=".addproduct.AddFoodActivity"
             android:exported="true">
         </activity>
+
+        <activity
+            android:name=".DrinkActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".addproduct.AddDrinkActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".DailyNeedsActivity"
+            android:exported="true">
+        </activity>
     </application>
 </manifest>
