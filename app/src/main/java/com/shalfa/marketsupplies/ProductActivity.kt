@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.shalfa.marketsupplies.adapter.ProductAdapter
 
 class ProductActivity : AppCompatActivity() {
 
@@ -21,7 +22,7 @@ class ProductActivity : AppCompatActivity() {
             when (category) {
                 "Makanan" -> {
                     // Pindah ke halaman item_food ketika Makanan diklik
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, FoodActivity::class.java)
                     startActivity(intent)
                 }
                 else -> {

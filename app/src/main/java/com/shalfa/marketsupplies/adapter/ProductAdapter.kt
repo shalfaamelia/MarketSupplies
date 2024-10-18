@@ -1,10 +1,11 @@
-package com.shalfa.marketsupplies
+package com.shalfa.marketsupplies.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.shalfa.marketsupplies.R
 
 class ProductAdapter(private val categories: List<String>, private val onClick: (String) -> Unit) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
