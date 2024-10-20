@@ -28,8 +28,6 @@
             android:exported="true">
         </activity>
 
-        <activity android:name=".addproduct.AddDailyNeedsActivity"/>
-
         <activity
             android:name=".FoodActivity"
             android:exported="true">
@@ -52,6 +50,11 @@
 
         <activity
             android:name=".DailyNeedsActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".addproduct.AddDailyNeedsActivity"
             android:exported="true">
         </activity>
     </application>
