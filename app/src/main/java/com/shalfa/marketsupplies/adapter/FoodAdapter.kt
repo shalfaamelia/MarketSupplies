@@ -45,4 +45,5 @@ class FoodAdapter(
     }
 
     override fun getItemCount(): Int = foodList.size
+
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:backgroundTint="@color/white"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
@@ -16,6 +16,7 @@
 
         <!-- Category Text -->
         <TextView
+            android:drawableRight="@drawable/ic_kategori"
             android:id="@+id/textViewCategory"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -8,17 +8,7 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/etIdKebutuhan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Id"
-        android:inputType="number"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
+        android:textColor="@color/black"
         android:id="@+id/etNamaKebutuhan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -26,9 +16,10 @@
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etIdKebutuhan" />
+        app:layout_constraintTop_toBottomOf="@+id/etIdKebutuhan"/>
 
     <EditText
+        android:textColor="@color/black"
         android:id="@+id/etBeratKebutuhan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -40,6 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etNamaKebutuhan" />
 
     <EditText
+        android:textColor="@color/black"
         android:id="@+id/etJumlahStokKebutuhan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -61,4 +53,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etJumlahStokKebutuhan" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

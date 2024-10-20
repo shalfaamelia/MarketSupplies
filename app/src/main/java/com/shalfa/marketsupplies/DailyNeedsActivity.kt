@@ -51,24 +51,8 @@ class DailyNeedsActivity : AppCompatActivity() {
 
         // Untuk menambah data makanan baru
         btnAddDailyNeeds.setOnClickListener {
-            Log.d("DailyNeedsActivity", "Add Daily Needs button clicked")
-            val intent = Intent(this, AddDailyNeedsActivity::class.java)
-            Log.d("DailyNeedsActivity", "Starting AddDailyNeedsActivity")
-            startActivity(intent)
+            // Pindah ke AddFoodActivity tanpa membawa data (mode tambah)
+            startActivity(Intent(this, AddDailyNeedsActivity::class.java))
         }
-    }
-    override fun onStart() {
-        super.onStart()
-        Log.d("DailyNeedsActivity", "onStart called")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("DailyNeedsActivity", "onResume called")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("DailyNeedsActivity", "onPause called")
     }
 }

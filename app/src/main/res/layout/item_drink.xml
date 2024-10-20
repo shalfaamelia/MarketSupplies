@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
+    android:backgroundTint="@color/white"
     android:id="@+id/cardview"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -20,6 +20,9 @@
         android:padding="8dp">
 
         <TextView
+            android:drawableRight="@drawable/ic_cardminuman"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:id="@+id/textViewNamaMinuman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,6 +33,8 @@
             android:textStyle="bold" />
 
         <TextView
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:id="@+id/textViewBeratMinuman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,6 +44,8 @@
             android:text="Berat Minuman" />
 
         <TextView
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:id="@+id/textViewJumlahStokMinuman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
