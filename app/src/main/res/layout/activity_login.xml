@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
+        android:textColor="@color/red"
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGIN"
-        android:textSize="45sp"
+        android:text="🅛🅞🅖🅘🅝"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,6 +27,7 @@
         app:layout_constraintGuide_percent="0.3" />
 
     <com.google.android.material.textfield.TextInputLayout
+        app:hintTextColor="@color/black"
         android:id="@+id/textFieldNama"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -36,10 +39,13 @@
             android:id="@+id/editTextNama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_name"
+            android:drawablePadding="9dp"
             android:hint="Masukkan Nama" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        app:hintTextColor="@color/black"
         android:id="@+id/textFieldPassword"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -49,13 +55,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textFieldNama">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:drawablePadding="9dp"
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_pass"
             android:hint="Masukkan Password" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:textColor="@color/white"
+        android:backgroundTint="@color/red"
         android:id="@+id/buttonLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

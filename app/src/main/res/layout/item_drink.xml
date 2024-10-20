@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
+    android:background="@color/white"
     android:id="@+id/cardview"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -13,7 +13,6 @@
     android:layout_marginTop="10dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent">
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -49,6 +48,8 @@
             android:text="Jumlah Stok" />
 
         <Button
+            android:textColor="@color/white"
+            android:backgroundTint="@color/red"
             android:id="@+id/btnUbah"
             android:layout_width="100dp"
             android:layout_height="60dp"
@@ -61,6 +62,8 @@
             android:text="Ubah" />
 
         <Button
+            android:textColor="@color/white"
+            android:backgroundTint="@color/red"
             android:id="@+id/btnHapus"
             android:layout_width="100dp"
             android:layout_height="60dp"
