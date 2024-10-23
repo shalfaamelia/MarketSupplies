@@ -22,4 +22,7 @@ interface MakananDao {
 
     @Query("SELECT * FROM makanan_table")
     fun getAllMakanan(): LiveData<List<MakananEntity>>
+
+    @Query("SELECT * FROM makanan_table")
+    fun getAll(): Array<MakananEntity>
 }

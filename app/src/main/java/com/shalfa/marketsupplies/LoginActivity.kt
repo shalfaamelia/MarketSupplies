@@ -17,7 +17,6 @@ class LoginActivity : AppCompatActivity() {
         val editTextPassword = findViewById<EditText>(R.id.editTextPassword)
         val buttonLogin = findViewById<Button>(R.id.buttonLogin)
 
-        // Login hardcode, ganti dengan validasi nama dan password sesuai kebutuhan
         val correctUsername = "admin"
         val correctPassword = "admin123"
 
@@ -26,12 +25,10 @@ class LoginActivity : AppCompatActivity() {
             val enteredPassword = editTextPassword.text.toString()
 
             if (enteredUsername == correctUsername && enteredPassword == correctPassword) {
-                // Berhasil login, pindah ke halaman Produk
                 val intent = Intent(this, ProductActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {
-                // Gagal login
                 Toast.makeText(this, "Nama atau Password salah", Toast.LENGTH_SHORT).show()
             }
         }

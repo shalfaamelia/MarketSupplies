@@ -13,7 +13,7 @@ import com.shalfa.marketsupplies.view_model.FoodViewModel
 class AddFoodActivity : AppCompatActivity() {
 
     private val viewModel: FoodViewModel by viewModels()
-    private var foodId: Int? = null  // Untuk menyimpan ID makanan (jika dalam mode edit)
+    private var foodId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,14 +24,12 @@ class AddFoodActivity : AppCompatActivity() {
         val etJumlahStokMakanan = findViewById<EditText>(R.id.etJumlahStokMakanan)
         val btnSimpan = findViewById<Button>(R.id.btnSimpan)
 
-        // Cek apakah intent membawa data (untuk mode edit)
         val intent = intent
         foodId = intent.getIntExtra("food_id", -1)
         val foodName = intent.getStringExtra("food_name")
         val foodWeight = intent.getIntExtra("food_weight", 0)
         val foodStock = intent.getIntExtra("food_stock", 0)
 
-        // Jika foodId valid, berarti kita dalam mode edit
         if (foodId != -1) {
             etNamaMakanan.setText(foodName)
             etBeratMakanan.setText(foodWeight.toString())
@@ -45,7 +43,6 @@ class AddFoodActivity : AppCompatActivity() {
 
             if (namaMakanan.isNotBlank() && beratMakanan != null && jumlahStok != null) {
                 if (foodId != -1) {
-                    // Mode edit: perbarui data makanan yang ada
                     val updatedMakanan = MakananEntity(
                         id = foodId!!,
                         namaMakanan = namaMakanan,
@@ -55,7 +52,6 @@ class AddFoodActivity : AppCompatActivity() {
                     viewModel.updateMakanan(updatedMakanan)
                     Toast.makeText(this, "Data Makanan Diperbarui", Toast.LENGTH_SHORT).show()
                 } else {
-                    // Mode tambah: tambah data makanan baru
                     val newMakanan = MakananEntity(
                         namaMakanan = namaMakanan,
                         beratMakanan = beratMakanan,

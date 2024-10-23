@@ -11,7 +11,7 @@ import com.shalfa.marketsupplies.entity.KebutuhanEntity
 
 class DailyNeedsAdapter(
     private val dailyNeedsList: List<KebutuhanEntity>,
-    private val onEditClick: (KebutuhanEntity) -> Unit,  // Callback untuk Ubah
+    private val onEditClick: (KebutuhanEntity) -> Unit,
     private val onDeleteClick: (KebutuhanEntity) -> Unit
 ) : RecyclerView.Adapter<DailyNeedsAdapter.DailyNeedsViewHolder>() {
 
@@ -32,15 +32,15 @@ class DailyNeedsAdapter(
     override fun onBindViewHolder(holder: DailyNeedsViewHolder, position: Int) {
         val dailyNeeds = dailyNeedsList[position]
         holder.tvNamaKebutuhan.text = dailyNeeds.namaKebutuhan
-        holder.tvBeratKebutuhan.text = "${dailyNeeds.beratKebutuhan} g"
+        holder.tvBeratKebutuhan.text = "${dailyNeeds.beratKebutuhan} gr/ml"
         holder.tvJumlahStok.text = "Stok: ${dailyNeeds.jumlahStok}"
 
         holder.btnUbah.setOnClickListener {
-            onEditClick(dailyNeeds)  // Panggil callback saat tombol Ubah ditekan
+            onEditClick(dailyNeeds)
         }
 
         holder.btnHapus.setOnClickListener {
-            onDeleteClick(dailyNeeds)  // Panggil callback saat tombol Hapus ditekan
+            onDeleteClick(dailyNeeds)
         }
     }
 

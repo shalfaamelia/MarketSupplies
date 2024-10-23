@@ -19,7 +19,6 @@ class ProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
 
-        // Produk kategori
         val categories = listOf("Makanan", "Minuman", "Kebutuhan Sehari-hari")
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewProduct)

@@ -18,7 +18,6 @@ import com.shalfa.marketsupplies.entity.MinumanEntity
 )
 abstract class AppDatabase : RoomDatabase() {
 
-    // Definisikan DAO untuk masing-masing entitas
     abstract fun makananDao(): MakananDao
     abstract fun minumanDao(): MinumanDao
     abstract fun kebutuhanDao(): KebutuhanDao
@@ -32,7 +31,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "app_database"  // Ubah nama database menjadi lebih umum
+                    "app_database"
                 ).build()
                 INSTANCE = instance
                 instance

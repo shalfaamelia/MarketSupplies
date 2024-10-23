@@ -13,7 +13,7 @@ import com.shalfa.marketsupplies.view_model.DrinkViewModel
 class AddDrinkActivity : AppCompatActivity() {
 
     private val viewModel: DrinkViewModel by viewModels()
-    private var drinkId: Int? = null  // Untuk menyimpan ID makanan (jika dalam mode edit)
+    private var drinkId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,14 +24,12 @@ class AddDrinkActivity : AppCompatActivity() {
         val etJumlahStokMinuman = findViewById<EditText>(R.id.etJumlahStokMinuman)
         val btnSimpan = findViewById<Button>(R.id.btnSimpan)
 
-        // Cek apakah intent membawa data (untuk mode edit)
         val intent = intent
         drinkId = intent.getIntExtra("drink_id", -1)
         val drinkName = intent.getStringExtra("drink_name")
         val drinkWeight = intent.getIntExtra("drink_weight", 0)
         val drinkStock = intent.getIntExtra("drink_stock", 0)
 
-        // Jika foodId valid, berarti kita dalam mode edit
         if (drinkId != -1) {
             etNamaMinuman.setText(drinkName)
             etBeratMinuman.setText(drinkWeight.toString())
@@ -45,7 +43,6 @@ class AddDrinkActivity : AppCompatActivity() {
 
             if (namaMinuman.isNotBlank() && beratMinuman != null && jumlahStok != null) {
                 if (drinkId != -1) {
-                    // Mode edit: perbarui data makanan yang ada
                     val updatedMinuman = MinumanEntity(
                         id = drinkId!!,
                         namaMinuman = namaMinuman,
@@ -55,16 +52,15 @@ class AddDrinkActivity : AppCompatActivity() {
                     viewModel.updateMinuman(updatedMinuman)
                     Toast.makeText(this, "Data Minuman Diperbarui", Toast.LENGTH_SHORT).show()
                 } else {
-                    // Mode tambah: tambah data makanan baru
                     val newMinuman = MinumanEntity(
                         namaMinuman = namaMinuman,
                         beratMinuman = beratMinuman,
                         jumlahStok = jumlahStok
                     )
                     viewModel.insertMinuman(newMinuman)
-                    Toast.makeText(this, "Data minuman Ditambahkan", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Data Minuman Ditambahkan", Toast.LENGTH_SHORT).show()
                 }
-                finish() // Kembali ke FoodActivity
+                finish()
             } else {
                 Toast.makeText(this, "Silakan lengkapi semua field", Toast.LENGTH_SHORT).show()
             }

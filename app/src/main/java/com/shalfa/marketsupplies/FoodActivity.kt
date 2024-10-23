@@ -25,12 +25,10 @@ class FoodActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Observe data dari ViewModel dan update RecyclerView
         viewModel.allFood.observe(this) { foodList ->
             recyclerView.adapter = FoodAdapter(
                 foodList,
                 onEditClick = { makanan ->
-                    // Pindah ke AddFoodActivity dengan data makanan untuk diubah
                     val intent = Intent(this, AddFoodActivity::class.java).apply {
                         putExtra("food_id", makanan.id)
                         putExtra("food_name", makanan.namaMakanan)
@@ -40,16 +38,13 @@ class FoodActivity : AppCompatActivity() {
                     startActivity(intent)
                 },
                 onDeleteClick = { makanan ->
-                    // Menghapus data makanan
                     viewModel.deleteMakanan(makanan)
                     Toast.makeText(this, "Data Makanan Dihapus", Toast.LENGTH_SHORT).show()
                 }
             )
         }
 
-        // Untuk menambah data makanan baru
         btnAddFood.setOnClickListener {
-            // Pindah ke AddFoodActivity tanpa membawa data (mode tambah)
             startActivity(Intent(this, AddFoodActivity::class.java))
         }
     }

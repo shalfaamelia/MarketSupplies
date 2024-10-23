@@ -25,12 +25,10 @@ class DrinkActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Observe data dari ViewModel dan update RecyclerView
         viewModel.allDrink.observe(this) { drinkList ->
             recyclerView.adapter = DrinkAdapter(
                 drinkList,
                 onEditClick = { minuman ->
-                    // Pindah ke AddFoodActivity dengan data makanan untuk diubah
                     val intent = Intent(this, AddDrinkActivity::class.java).apply {
                         putExtra("drink_id", minuman.id)
                         putExtra("drink_name", minuman.namaMinuman)
@@ -40,16 +38,13 @@ class DrinkActivity : AppCompatActivity() {
                     startActivity(intent)
                 },
                 onDeleteClick = { minuman ->
-                    // Menghapus data makanan
                     viewModel.deleteMinuman(minuman)
                     Toast.makeText(this, "Data Makanan Dihapus", Toast.LENGTH_SHORT).show()
                 }
             )
         }
 
-        // Untuk menambah data makanan baru
         btnAddDrink.setOnClickListener {
-            // Pindah ke AddFoodActivity tanpa membawa data (mode tambah)
             startActivity(Intent(this, AddDrinkActivity::class.java))
         }
     }

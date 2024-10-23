@@ -11,7 +11,7 @@ import com.shalfa.marketsupplies.entity.MinumanEntity
 
 class DrinkAdapter(
     private val drinkList: List<MinumanEntity>,
-    private val onEditClick: (MinumanEntity) -> Unit,  // Callback untuk Ubah
+    private val onEditClick: (MinumanEntity) -> Unit,
     private val onDeleteClick: (MinumanEntity) -> Unit
 ) : RecyclerView.Adapter<DrinkAdapter.DrinkViewHolder>() {
 
@@ -36,11 +36,11 @@ class DrinkAdapter(
         holder.tvJumlahStok.text = "Stok: ${drink.jumlahStok}"
 
         holder.btnUbah.setOnClickListener {
-            onEditClick(drink)  // Panggil callback saat tombol Ubah ditekan
+            onEditClick(drink)
         }
 
         holder.btnHapus.setOnClickListener {
-            onDeleteClick(drink)  // Panggil callback saat tombol Hapus ditekan
+            onDeleteClick(drink)
         }
     }
 

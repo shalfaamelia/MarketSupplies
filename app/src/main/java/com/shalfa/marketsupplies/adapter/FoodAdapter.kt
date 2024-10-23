@@ -11,7 +11,7 @@ import com.shalfa.marketsupplies.entity.MakananEntity
 
 class FoodAdapter(
     private val foodList: List<MakananEntity>,
-    private val onEditClick: (MakananEntity) -> Unit,  // Callback untuk Ubah
+    private val onEditClick: (MakananEntity) -> Unit,
     private val onDeleteClick: (MakananEntity) -> Unit
 ) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
 
@@ -32,18 +32,17 @@ class FoodAdapter(
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val food = foodList[position]
         holder.tvNamaMakanan.text = food.namaMakanan
-        holder.tvBeratMakanan.text = "${food.beratMakanan} g"
+        holder.tvBeratMakanan.text = "${food.beratMakanan} gr"
         holder.tvJumlahStok.text = "Stok: ${food.jumlahStok}"
 
         holder.btnUbah.setOnClickListener {
-            onEditClick(food)  // Panggil callback saat tombol Ubah ditekan
+            onEditClick(food)
         }
 
         holder.btnHapus.setOnClickListener {
-            onDeleteClick(food)  // Panggil callback saat tombol Hapus ditekan
+            onDeleteClick(food)
         }
     }
 
     override fun getItemCount(): Int = foodList.size
-
 }
