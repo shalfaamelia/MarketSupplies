@@ -84,7 +84,7 @@
     <ImageView
         android:layout_width="202dp"
         android:layout_height="192dp"
-        android:background="@drawable/kelompok2market"
+        android:background="@drawable/shamaninton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
