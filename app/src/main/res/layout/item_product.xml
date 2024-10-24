@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Category Text -->
         <TextView
             android:drawableRight="@drawable/ic_kategori"
             android:id="@+id/textViewCategory"
@@ -28,12 +27,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Product Description or Extra Text -->
         <TextView
             android:id="@+id/textViewDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Product description or additional info"
+            android:text="Silahkan klik untuk Melihat dan Menambahkan Data"
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray"
             app:layout_constraintTop_toBottomOf="@id/textViewCategory"
