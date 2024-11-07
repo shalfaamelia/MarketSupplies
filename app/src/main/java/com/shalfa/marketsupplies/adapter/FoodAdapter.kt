@@ -1,12 +1,9 @@
 package com.shalfa.marketsupplies.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.shalfa.marketsupplies.R
+import com.shalfa.marketsupplies.databinding.ItemFoodBinding
 import com.shalfa.marketsupplies.entity.MakananEntity
 
 class FoodAdapter(
@@ -15,32 +12,27 @@ class FoodAdapter(
     private val onDeleteClick: (MakananEntity) -> Unit
 ) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
 
-    class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvNamaMakanan: TextView = itemView.findViewById(R.id.textViewNamaMakanan)
-        val tvBeratMakanan: TextView = itemView.findViewById(R.id.textViewBeratMakanan)
-        val tvJumlahStok: TextView = itemView.findViewById(R.id.textViewJumlahStokMakanan)
-        val btnUbah: Button = itemView.findViewById(R.id.btnUbah)
-        val btnHapus: Button = itemView.findViewById(R.id.btnHapus)
-    }
+    class FoodViewHolder(val binding: ItemFoodBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_food, parent, false)
-        return FoodViewHolder(view)
+        val binding = ItemFoodBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FoodViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val food = foodList[position]
-        holder.tvNamaMakanan.text = food.namaMakanan
-        holder.tvBeratMakanan.text = "${food.beratMakanan} gr"
-        holder.tvJumlahStok.text = "Stok: ${food.jumlahStok}"
+        holder.binding.apply {
+            textViewNamaMakanan.text = food.namaMakanan
+            textViewBeratMakanan.text = "${food.beratMakanan} gr"
+            textViewJumlahStokMakanan.text = "Stok: ${food.jumlahStok}"
 
-        holder.btnUbah.setOnClickListener {
-            onEditClick(food)
-        }
+            btnUbah.setOnClickListener {
+                onEditClick(food)
+            }
 
-        holder.btnHapus.setOnClickListener {
-            onDeleteClick(food)
+            btnHapus.setOnClickListener {
+                onDeleteClick(food)
+            }
         }
     }
 

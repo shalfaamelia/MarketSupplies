@@ -1,12 +1,10 @@
 package com.shalfa.marketsupplies.addproduct
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.shalfa.marketsupplies.R
+import com.shalfa.marketsupplies.databinding.ActivityAddDrinkBinding
 import com.shalfa.marketsupplies.entity.MinumanEntity
 import com.shalfa.marketsupplies.view_model.DrinkViewModel
 
@@ -14,15 +12,12 @@ class AddDrinkActivity : AppCompatActivity() {
 
     private val viewModel: DrinkViewModel by viewModels()
     private var drinkId: Int? = null
+    private lateinit var binding: ActivityAddDrinkBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_drink)
-
-        val etNamaMinuman = findViewById<EditText>(R.id.etNamaMinuman)
-        val etBeratMinuman = findViewById<EditText>(R.id.etBeratMinuman)
-        val etJumlahStokMinuman = findViewById<EditText>(R.id.etJumlahStokMinuman)
-        val btnSimpan = findViewById<Button>(R.id.btnSimpan)
+        binding = ActivityAddDrinkBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val intent = intent
         drinkId = intent.getIntExtra("drink_id", -1)
@@ -31,15 +26,15 @@ class AddDrinkActivity : AppCompatActivity() {
         val drinkStock = intent.getIntExtra("drink_stock", 0)
 
         if (drinkId != -1) {
-            etNamaMinuman.setText(drinkName)
-            etBeratMinuman.setText(drinkWeight.toString())
-            etJumlahStokMinuman.setText(drinkStock.toString())
+            binding.etNamaMinuman.setText(drinkName)
+            binding.etBeratMinuman.setText(drinkWeight.toString())
+            binding.etJumlahStokMinuman.setText(drinkStock.toString())
         }
 
-        btnSimpan.setOnClickListener {
-            val namaMinuman = etNamaMinuman.text.toString()
-            val beratMinuman = etBeratMinuman.text.toString().toIntOrNull()
-            val jumlahStok = etJumlahStokMinuman.text.toString().toIntOrNull()
+        binding.btnSimpan.setOnClickListener {
+            val namaMinuman = binding.etNamaMinuman.text.toString()
+            val beratMinuman = binding.etBeratMinuman.text.toString().toIntOrNull()
+            val jumlahStok = binding.etJumlahStokMinuman.text.toString().toIntOrNull()
 
             if (namaMinuman.isNotBlank() && beratMinuman != null && jumlahStok != null) {
                 if (drinkId != -1) {
