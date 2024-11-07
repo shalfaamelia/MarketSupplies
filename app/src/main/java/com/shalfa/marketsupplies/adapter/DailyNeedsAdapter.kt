@@ -2,15 +2,17 @@ package com.shalfa.marketsupplies.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.shalfa.marketsupplies.databinding.ItemDailyneedsBinding
 import com.shalfa.marketsupplies.entity.KebutuhanEntity
+import com.shalfa.marketsupplies.toStockWithItem
 
 class DailyNeedsAdapter(
-    private val dailyNeedsList: List<KebutuhanEntity>,
     private val onEditClick: (KebutuhanEntity) -> Unit,
     private val onDeleteClick: (KebutuhanEntity) -> Unit
-) : RecyclerView.Adapter<DailyNeedsAdapter.DailyNeedsViewHolder>() {
+) : ListAdapter<KebutuhanEntity, DailyNeedsAdapter.DailyNeedsViewHolder>(DIFF_CALLBACK) {
 
     class DailyNeedsViewHolder(val binding: ItemDailyneedsBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -20,11 +22,11 @@ class DailyNeedsAdapter(
     }
 
     override fun onBindViewHolder(holder: DailyNeedsViewHolder, position: Int) {
-        val dailyNeeds = dailyNeedsList[position]
+        val dailyNeeds = getItem(position)
         holder.binding.apply {
             textViewNamaKebutuhan.text = dailyNeeds.namaKebutuhan
             textViewBeratKebutuhan.text = "${dailyNeeds.beratKebutuhan} gr/ml"
-            textViewJumlahStokKebutuhan.text = "Stok: ${dailyNeeds.jumlahStok}"
+            textViewJumlahStokKebutuhan.text = "Stok: ${dailyNeeds.jumlahStok.toStockWithItem()}"
 
             btnUbah.setOnClickListener {
                 onEditClick(dailyNeeds)
@@ -36,5 +38,15 @@ class DailyNeedsAdapter(
         }
     }
 
-    override fun getItemCount(): Int = dailyNeedsList.size
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<KebutuhanEntity>() {
+            override fun areItemsTheSame(oldItem: KebutuhanEntity, newItem: KebutuhanEntity): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: KebutuhanEntity, newItem: KebutuhanEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
 }

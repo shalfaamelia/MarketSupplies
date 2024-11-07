@@ -11,6 +11,7 @@ import com.shalfa.marketsupplies.databinding.ActivityProductBinding
 class ProductActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProductBinding
+    private lateinit var productAdapter: ProductAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +21,7 @@ class ProductActivity : AppCompatActivity() {
 
         val categories = listOf("Makanan", "Minuman", "Kebutuhan Sehari-hari")
 
-        val productAdapter = ProductAdapter(categories) { category ->
+        productAdapter = ProductAdapter { category ->
             when (category) {
                 "Makanan" -> {
                     startActivity(Intent(this, FoodActivity::class.java))
@@ -41,5 +42,7 @@ class ProductActivity : AppCompatActivity() {
             adapter = productAdapter
             layoutManager = LinearLayoutManager(this@ProductActivity)
         }
+
+        productAdapter.submitList(categories)
     }
 }

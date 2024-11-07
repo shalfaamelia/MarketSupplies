@@ -15,31 +15,34 @@ class DailyNeedsActivity : AppCompatActivity() {
 
     private val viewModel: DailyNeedsViewModel by viewModels()
     private lateinit var binding: ActivityDailyneedsBinding
+    private lateinit var dailyNeedsAdapter: DailyNeedsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDailyneedsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        dailyNeedsAdapter = DailyNeedsAdapter(
+            onEditClick = { kebutuhan ->
+                val intent = Intent(this, AddDailyNeedsActivity::class.java).apply {
+                    putExtra("dailyneeds_id", kebutuhan.id)
+                    putExtra("dailyneeds_name", kebutuhan.namaKebutuhan)
+                    putExtra("dailyneeds_weight", kebutuhan.beratKebutuhan)
+                    putExtra("dailyneeds_stock", kebutuhan.jumlahStok)
+                }
+                startActivity(intent)
+            },
+            onDeleteClick = { kebutuhan ->
+                viewModel.deleteKebutuhan(kebutuhan)
+                Toast.makeText(this, "Data Kebutuhan Dihapus", Toast.LENGTH_SHORT).show()
+            }
+        )
+
         binding.recyclerViewDailyNeeds.layoutManager = LinearLayoutManager(this)
+        binding.recyclerViewDailyNeeds.adapter = dailyNeedsAdapter
 
         viewModel.allDailyNeeds.observe(this) { dailyNeedsList ->
-            binding.recyclerViewDailyNeeds.adapter = DailyNeedsAdapter(
-                dailyNeedsList,
-                onEditClick = { kebutuhan ->
-                    val intent = Intent(this, AddDailyNeedsActivity::class.java).apply {
-                        putExtra("dailyneeds_id", kebutuhan.id)
-                        putExtra("dailyneeds_name", kebutuhan.namaKebutuhan)
-                        putExtra("dailyneeds_weight", kebutuhan.beratKebutuhan)
-                        putExtra("dailyneeds_stock", kebutuhan.jumlahStok)
-                    }
-                    startActivity(intent)
-                },
-                onDeleteClick = { kebutuhan ->
-                    viewModel.deleteKebutuhan(kebutuhan)
-                    Toast.makeText(this, "Data Kebutuhan Dihapus", Toast.LENGTH_SHORT).show()
-                }
-            )
+            dailyNeedsAdapter.submitList(dailyNeedsList)
         }
 
         binding.btnAddDailyNeeds.setOnClickListener {

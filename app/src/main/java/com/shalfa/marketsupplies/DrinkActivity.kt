@@ -15,31 +15,34 @@ class DrinkActivity : AppCompatActivity() {
 
     private val viewModel: DrinkViewModel by viewModels()
     private lateinit var binding: ActivityDrinkBinding
+    private lateinit var drinkAdapter: DrinkAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDrinkBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        drinkAdapter = DrinkAdapter(
+            onEditClick = { minuman ->
+                val intent = Intent(this, AddDrinkActivity::class.java).apply {
+                    putExtra("drink_id", minuman.id)
+                    putExtra("drink_name", minuman.namaMinuman)
+                    putExtra("drink_weight", minuman.beratMinuman)
+                    putExtra("drink_stock", minuman.jumlahStok)
+                }
+                startActivity(intent)
+            },
+            onDeleteClick = { minuman ->
+                viewModel.deleteMinuman(minuman)
+                Toast.makeText(this, "Data Minuman Dihapus", Toast.LENGTH_SHORT).show()
+            }
+        )
+
         binding.recyclerViewDrink.layoutManager = LinearLayoutManager(this)
+        binding.recyclerViewDrink.adapter = drinkAdapter
 
         viewModel.allDrink.observe(this) { drinkList ->
-            binding.recyclerViewDrink.adapter = DrinkAdapter(
-                drinkList,
-                onEditClick = { minuman ->
-                    val intent = Intent(this, AddDrinkActivity::class.java).apply {
-                        putExtra("drink_id", minuman.id)
-                        putExtra("drink_name", minuman.namaMinuman)
-                        putExtra("drink_weight", minuman.beratMinuman)
-                        putExtra("drink_stock", minuman.jumlahStok)
-                    }
-                    startActivity(intent)
-                },
-                onDeleteClick = { minuman ->
-                    viewModel.deleteMinuman(minuman)
-                    Toast.makeText(this, "Data Minuman Dihapus", Toast.LENGTH_SHORT).show()
-                }
-            )
+            drinkAdapter.submitList(drinkList)
         }
 
         binding.btnAddDrink.setOnClickListener {

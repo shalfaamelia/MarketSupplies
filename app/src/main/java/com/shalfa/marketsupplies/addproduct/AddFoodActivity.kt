@@ -54,7 +54,7 @@ class AddFoodActivity : AppCompatActivity() {
                     viewModel.insertMakanan(newMakanan)
                     Toast.makeText(this, "Data Makanan Ditambahkan", Toast.LENGTH_SHORT).show()
                 }
-                finish() // Menutup aktivitas setelah selesai
+                finish()
             } else {
                 Toast.makeText(this, "Silakan lengkapi semua field", Toast.LENGTH_SHORT).show()
             }

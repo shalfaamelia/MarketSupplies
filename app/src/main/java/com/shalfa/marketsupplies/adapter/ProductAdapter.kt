@@ -2,13 +2,14 @@ package com.shalfa.marketsupplies.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.shalfa.marketsupplies.databinding.ItemProductBinding
 
 class ProductAdapter(
-    private val categories: List<String>,
     private val onClick: (String) -> Unit
-) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+) : ListAdapter<String, ProductAdapter.ProductViewHolder>(DIFF_CALLBACK) {
 
     class ProductViewHolder(
         private val binding: ItemProductBinding,
@@ -37,8 +38,18 @@ class ProductAdapter(
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.bind(categories[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int = categories.size
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<String>() {
+            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
 }

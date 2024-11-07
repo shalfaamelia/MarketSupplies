@@ -5,8 +5,10 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.shalfa.marketsupplies.dao.MakananDao
+import com.shalfa.marketsupplies.dao.MinumanDao
 import com.shalfa.marketsupplies.database.AppDatabase
 import com.shalfa.marketsupplies.entity.MakananEntity
+import com.shalfa.marketsupplies.entity.MinumanEntity
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -19,7 +21,7 @@ class DatabaseTest {
     private lateinit var makananDao: MakananDao
     private lateinit var db: AppDatabase
 
-    private val mie = MakananEntity(1,"Mie",500,65)
+    private val mie = MakananEntity(1,"mie", 300,36)
 
     @Before
     fun createDb() {
