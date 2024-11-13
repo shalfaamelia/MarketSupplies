@@ -42,7 +42,7 @@ class FoodActivity : AppCompatActivity() {
         binding.recyclerViewFood.adapter = foodAdapter
 
         viewModel.allFood.observe(this) { foodList ->
-            foodAdapter.submitList(foodList)
+            foodAdapter.submitFoodData(foodList)
         }
 
         binding.btnAddfood.setOnClickListener {

@@ -42,7 +42,7 @@ class DrinkActivity : AppCompatActivity() {
         binding.recyclerViewDrink.adapter = drinkAdapter
 
         viewModel.allDrink.observe(this) { drinkList ->
-            drinkAdapter.submitList(drinkList)
+            drinkAdapter.submitDrinkData(drinkList)
         }
 
         binding.btnAddDrink.setOnClickListener {

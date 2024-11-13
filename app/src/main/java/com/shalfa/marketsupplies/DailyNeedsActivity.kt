@@ -42,7 +42,7 @@ class DailyNeedsActivity : AppCompatActivity() {
         binding.recyclerViewDailyNeeds.adapter = dailyNeedsAdapter
 
         viewModel.allDailyNeeds.observe(this) { dailyNeedsList ->
-            dailyNeedsAdapter.submitList(dailyNeedsList)
+            dailyNeedsAdapter.submitDailyNeedsData(dailyNeedsList)
         }
 
         binding.btnAddDailyNeeds.setOnClickListener {
