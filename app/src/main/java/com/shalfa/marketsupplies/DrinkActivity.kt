@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.shalfa.marketsupplies.adapter.DrinkAdapter
 import com.shalfa.marketsupplies.addproduct.AddDrinkActivity
 import com.shalfa.marketsupplies.databinding.ActivityDrinkBinding
@@ -38,7 +38,16 @@ class DrinkActivity : AppCompatActivity() {
             }
         )
 
-        binding.recyclerViewDrink.layoutManager = LinearLayoutManager(this)
+        val CustomLayoutManager = GridLayoutManager(this, 2)
+        CustomLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return when (drinkAdapter.getItemViewType(position)) {
+                    DrinkAdapter.ITEM_VIEW_TYPE.HEADER.ordinal -> 2
+                    else -> 1
+                }
+            }
+        }
+        binding.recyclerViewDrink.layoutManager = CustomLayoutManager
         binding.recyclerViewDrink.adapter = drinkAdapter
 
         viewModel.allDrink.observe(this) { drinkList ->

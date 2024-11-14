@@ -5,8 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.shalfa.marketsupplies.adapter.DailyNeedsAdapter
+import com.shalfa.marketsupplies.adapter.DrinkAdapter
 import com.shalfa.marketsupplies.addproduct.AddDailyNeedsActivity
 import com.shalfa.marketsupplies.databinding.ActivityDailyneedsBinding
 import com.shalfa.marketsupplies.view_model.DailyNeedsViewModel
@@ -38,7 +39,16 @@ class DailyNeedsActivity : AppCompatActivity() {
             }
         )
 
-        binding.recyclerViewDailyNeeds.layoutManager = LinearLayoutManager(this)
+        val CustomLayoutManager = GridLayoutManager(this, 2)
+        CustomLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return when (dailyNeedsAdapter.getItemViewType(position)) {
+                    DrinkAdapter.ITEM_VIEW_TYPE.HEADER.ordinal -> 2
+                    else -> 1
+                }
+            }
+        }
+        binding.recyclerViewDailyNeeds.layoutManager = CustomLayoutManager
         binding.recyclerViewDailyNeeds.adapter = dailyNeedsAdapter
 
         viewModel.allDailyNeeds.observe(this) { dailyNeedsList ->
