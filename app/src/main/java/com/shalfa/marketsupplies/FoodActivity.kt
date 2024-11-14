@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.shalfa.marketsupplies.adapter.FoodAdapter
 import com.shalfa.marketsupplies.addproduct.AddFoodActivity
 import com.shalfa.marketsupplies.databinding.ActivityFoodBinding
@@ -38,7 +38,16 @@ class FoodActivity : AppCompatActivity() {
             }
         )
 
-        binding.recyclerViewFood.layoutManager = LinearLayoutManager(this)
+        val CustomLayoutManager = GridLayoutManager(this, 2)
+        CustomLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return when (foodAdapter.getItemViewType(position)) {
+                    FoodAdapter.ITEM_VIEW_TYPE.HEADER.ordinal -> 2
+                    else -> 1
+                }
+            }
+        }
+        binding.recyclerViewFood.layoutManager = CustomLayoutManager
         binding.recyclerViewFood.adapter = foodAdapter
 
         viewModel.allFood.observe(this) { foodList ->
