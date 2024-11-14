@@ -79,6 +79,7 @@ class FoodAdapter(
         }
     }
 
+
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Any>() {
             override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {

@@ -22,6 +22,7 @@ class FoodActivity : AppCompatActivity() {
         binding = ActivityFoodBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         foodAdapter = FoodAdapter(
             onEditClick = { makanan ->
                 val intent = Intent(this, AddFoodActivity::class.java).apply {
