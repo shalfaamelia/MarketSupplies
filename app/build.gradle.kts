@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
 
     id("com.google.devtools.ksp")
+    alias(libs.plugins.google.gms.google.services)
 
 }
 
@@ -56,6 +57,7 @@ dependencies {
 
     // Tambahkan dependensi Activity KTX
     implementation("androidx.activity:activity-ktx:1.7.2")
+    implementation(libs.firebase.database)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")

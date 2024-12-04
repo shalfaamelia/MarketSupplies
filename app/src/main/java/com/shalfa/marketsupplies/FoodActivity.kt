@@ -12,7 +12,6 @@ import com.shalfa.marketsupplies.databinding.ActivityFoodBinding
 import com.shalfa.marketsupplies.view_model.FoodViewModel
 
 class FoodActivity : AppCompatActivity() {
-
     private val viewModel: FoodViewModel by viewModels()
     private lateinit var binding: ActivityFoodBinding
     private lateinit var foodAdapter: FoodAdapter
@@ -21,7 +20,7 @@ class FoodActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFoodBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        viewModel.fetchFromFirebase()
 
         foodAdapter = FoodAdapter(
             onEditClick = { makanan ->
@@ -35,6 +34,7 @@ class FoodActivity : AppCompatActivity() {
             },
             onDeleteClick = { makanan ->
                 viewModel.deleteMakanan(makanan)
+                viewModel.deleteFromFirebase(makanan.id)
                 Toast.makeText(this, "Data Makanan Dihapus", Toast.LENGTH_SHORT).show()
             }
         )

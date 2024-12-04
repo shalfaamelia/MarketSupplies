@@ -9,7 +9,6 @@ import com.shalfa.marketsupplies.entity.MakananEntity
 import com.shalfa.marketsupplies.view_model.FoodViewModel
 
 class AddFoodActivity : AppCompatActivity() {
-
     private val viewModel: FoodViewModel by viewModels()
     private var foodId: Int? = null
     private lateinit var binding: ActivityAddFoodBinding
@@ -44,14 +43,18 @@ class AddFoodActivity : AppCompatActivity() {
                         jumlahStok = jumlahStok
                     )
                     viewModel.updateMakanan(updatedMakanan)
+                    viewModel.updateToFirebase(updatedMakanan)
                     Toast.makeText(this, "Data Makanan Diperbarui", Toast.LENGTH_SHORT).show()
                 } else {
+                    val newId = (System.currentTimeMillis() / 1000).toInt()
                     val newMakanan = MakananEntity(
+                        id = newId,
                         namaMakanan = namaMakanan,
                         beratMakanan = beratMakanan,
                         jumlahStok = jumlahStok
                     )
                     viewModel.insertMakanan(newMakanan)
+                    viewModel.insertToFirebase(newMakanan)
                     Toast.makeText(this, "Data Makanan Ditambahkan", Toast.LENGTH_SHORT).show()
                 }
                 finish()
