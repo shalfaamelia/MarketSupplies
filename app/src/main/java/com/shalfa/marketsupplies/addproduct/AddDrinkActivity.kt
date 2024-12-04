@@ -9,7 +9,6 @@ import com.shalfa.marketsupplies.entity.MinumanEntity
 import com.shalfa.marketsupplies.view_model.DrinkViewModel
 
 class AddDrinkActivity : AppCompatActivity() {
-
     private val viewModel: DrinkViewModel by viewModels()
     private var drinkId: Int? = null
     private lateinit var binding: ActivityAddDrinkBinding
@@ -45,14 +44,18 @@ class AddDrinkActivity : AppCompatActivity() {
                         jumlahStok = jumlahStok
                     )
                     viewModel.updateMinuman(updatedMinuman)
+                    viewModel.updateToFirebase(updatedMinuman)
                     Toast.makeText(this, "Data Minuman Diperbarui", Toast.LENGTH_SHORT).show()
                 } else {
+                    val newId = (System.currentTimeMillis() / 1000).toInt()
                     val newMinuman = MinumanEntity(
+                        id = newId,
                         namaMinuman = namaMinuman,
                         beratMinuman = beratMinuman,
                         jumlahStok = jumlahStok
                     )
                     viewModel.insertMinuman(newMinuman)
+                    viewModel.insertToFirebase(newMinuman)
                     Toast.makeText(this, "Data Minuman Ditambahkan", Toast.LENGTH_SHORT).show()
                 }
                 finish()

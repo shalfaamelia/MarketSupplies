@@ -46,14 +46,18 @@ class AddDailyNeedsActivity : AppCompatActivity() {
                         jumlahStok = jumlahStok
                     )
                     viewModel.updateKebutuhan(updatedKebutuhan)
+                    viewModel.updateToFirebase(updatedKebutuhan)
                     Toast.makeText(this, "Data Kebutuhan Diperbarui", Toast.LENGTH_SHORT).show()
                 } else {
+                    val newId = (System.currentTimeMillis() / 1000).toInt()
                     val newKebutuhan = KebutuhanEntity(
+                        id = newId,
                         namaKebutuhan = namaKebutuhan,
                         beratKebutuhan = beratKebutuhan,
                         jumlahStok = jumlahStok
                     )
                     viewModel.insertKebutuhan(newKebutuhan)
+                    viewModel.insertToFirebase(newKebutuhan)
                     Toast.makeText(this, "Data Kebutuhan Ditambahkan", Toast.LENGTH_SHORT).show()
                 }
                 finish()

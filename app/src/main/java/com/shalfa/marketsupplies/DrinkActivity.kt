@@ -12,7 +12,6 @@ import com.shalfa.marketsupplies.databinding.ActivityDrinkBinding
 import com.shalfa.marketsupplies.view_model.DrinkViewModel
 
 class DrinkActivity : AppCompatActivity() {
-
     private val viewModel: DrinkViewModel by viewModels()
     private lateinit var binding: ActivityDrinkBinding
     private lateinit var drinkAdapter: DrinkAdapter
@@ -21,6 +20,7 @@ class DrinkActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDrinkBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModel.fetchFromFirebase()
 
         drinkAdapter = DrinkAdapter(
             onEditClick = { minuman ->
@@ -34,6 +34,7 @@ class DrinkActivity : AppCompatActivity() {
             },
             onDeleteClick = { minuman ->
                 viewModel.deleteMinuman(minuman)
+                viewModel.deleteFromFirebase(minuman.id)
                 Toast.makeText(this, "Data Minuman Dihapus", Toast.LENGTH_SHORT).show()
             }
         )

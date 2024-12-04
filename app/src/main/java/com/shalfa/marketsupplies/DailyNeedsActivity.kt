@@ -22,6 +22,7 @@ class DailyNeedsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDailyneedsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModel.fetchFromFirebase()
 
         dailyNeedsAdapter = DailyNeedsAdapter(
             onEditClick = { kebutuhan ->
@@ -35,6 +36,7 @@ class DailyNeedsActivity : AppCompatActivity() {
             },
             onDeleteClick = { kebutuhan ->
                 viewModel.deleteKebutuhan(kebutuhan)
+                viewModel.deleteFromFirebase(kebutuhan.id)
                 Toast.makeText(this, "Data Kebutuhan Dihapus", Toast.LENGTH_SHORT).show()
             }
         )
