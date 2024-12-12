@@ -16,9 +16,10 @@ class AddDailyNeedsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityAddDailyneedsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
 
         val intent = intent
         dailyNeedsId = intent.getIntExtra("dailyneeds_id", -1)

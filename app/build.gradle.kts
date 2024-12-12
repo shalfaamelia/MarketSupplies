@@ -59,6 +59,12 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.7.2")
     implementation(libs.firebase.database)
 
+    // Fragment KTX
+    implementation ("androidx.fragment:fragment-ktx:1.6.0")
+    // Material Components
+    implementation ("com.google.android.material:material:1.9.0")
+
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")

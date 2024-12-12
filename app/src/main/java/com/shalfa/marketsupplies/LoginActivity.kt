@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
             val enteredPassword = binding.editTextPassword.text.toString()
 
             if (enteredUsername == correctUsername && enteredPassword == correctPassword) {
-                val intent = Intent(this, ProductActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {

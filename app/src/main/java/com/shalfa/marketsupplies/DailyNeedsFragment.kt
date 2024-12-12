@@ -2,31 +2,40 @@ package com.shalfa.marketsupplies
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.shalfa.marketsupplies.adapter.DailyNeedsAdapter
 import com.shalfa.marketsupplies.adapter.DrinkAdapter
 import com.shalfa.marketsupplies.addproduct.AddDailyNeedsActivity
-import com.shalfa.marketsupplies.databinding.ActivityDailyneedsBinding
+import com.shalfa.marketsupplies.databinding.FragmentDailyneedsBinding
 import com.shalfa.marketsupplies.view_model.DailyNeedsViewModel
 
-class DailyNeedsActivity : AppCompatActivity() {
+class DailyNeedsFragment : Fragment() {
 
     private val viewModel: DailyNeedsViewModel by viewModels()
-    private lateinit var binding: ActivityDailyneedsBinding
+    private lateinit var binding: FragmentDailyneedsBinding
     private lateinit var dailyNeedsAdapter: DailyNeedsAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityDailyneedsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentDailyneedsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.fetchFromFirebase()
 
         dailyNeedsAdapter = DailyNeedsAdapter(
             onEditClick = { kebutuhan ->
-                val intent = Intent(this, AddDailyNeedsActivity::class.java).apply {
+                val intent = Intent(requireContext(), AddDailyNeedsActivity::class.java).apply {
                     putExtra("dailyneeds_id", kebutuhan.id)
                     putExtra("dailyneeds_name", kebutuhan.namaKebutuhan)
                     putExtra("dailyneeds_weight", kebutuhan.beratKebutuhan)
@@ -37,11 +46,11 @@ class DailyNeedsActivity : AppCompatActivity() {
             onDeleteClick = { kebutuhan ->
                 viewModel.deleteKebutuhan(kebutuhan)
                 viewModel.deleteFromFirebase(kebutuhan.id)
-                Toast.makeText(this, "Data Kebutuhan Dihapus", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Data Kebutuhan Dihapus", Toast.LENGTH_SHORT).show()
             }
         )
 
-        val CustomLayoutManager = GridLayoutManager(this, 2)
+        val CustomLayoutManager = GridLayoutManager(requireContext(), 2)
         CustomLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 return when (dailyNeedsAdapter.getItemViewType(position)) {
@@ -53,12 +62,12 @@ class DailyNeedsActivity : AppCompatActivity() {
         binding.recyclerViewDailyNeeds.layoutManager = CustomLayoutManager
         binding.recyclerViewDailyNeeds.adapter = dailyNeedsAdapter
 
-        viewModel.allDailyNeeds.observe(this) { dailyNeedsList ->
+        viewModel.allDailyNeeds.observe(viewLifecycleOwner) { dailyNeedsList ->
             dailyNeedsAdapter.submitDailyNeedsData(dailyNeedsList)
         }
 
         binding.btnAddDailyNeeds.setOnClickListener {
-            startActivity(Intent(this, AddDailyNeedsActivity::class.java))
+            startActivity(Intent(requireContext(), AddDailyNeedsActivity::class.java))
         }
     }
 }

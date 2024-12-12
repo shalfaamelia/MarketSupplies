@@ -18,6 +18,8 @@ class AddFoodActivity : AppCompatActivity() {
         binding = ActivityAddFoodBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbar)
+
         foodId = intent.getIntExtra("food_id", -1)
         val foodName = intent.getStringExtra("food_name")
         val foodWeight = intent.getIntExtra("food_weight", 0)

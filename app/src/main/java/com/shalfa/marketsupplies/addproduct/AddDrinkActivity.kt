@@ -18,6 +18,8 @@ class AddDrinkActivity : AppCompatActivity() {
         binding = ActivityAddDrinkBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbar)
+
         val intent = intent
         drinkId = intent.getIntExtra("drink_id", -1)
         val drinkName = intent.getStringExtra("drink_name")
