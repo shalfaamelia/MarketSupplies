@@ -16,7 +16,6 @@ import com.shalfa.marketsupplies.databinding.FragmentDailyneedsBinding
 import com.shalfa.marketsupplies.view_model.DailyNeedsViewModel
 
 class DailyNeedsFragment : Fragment() {
-
     private val viewModel: DailyNeedsViewModel by viewModels()
     private lateinit var binding: FragmentDailyneedsBinding
     private lateinit var dailyNeedsAdapter: DailyNeedsAdapter
@@ -29,6 +28,7 @@ class DailyNeedsFragment : Fragment() {
         binding = FragmentDailyneedsBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetchFromFirebase()

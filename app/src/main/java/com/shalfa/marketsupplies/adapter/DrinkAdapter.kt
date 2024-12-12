@@ -16,22 +16,15 @@ class DrinkAdapter(
     private val onDeleteClick: (MinumanEntity) -> Unit
 ) : ListAdapter<Any, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
 
-    // Enum untuk menentukan tipe tampilan
     enum class ITEM_VIEW_TYPE {
         HEADER,
         DRINK
     }
 
-    // Class untuk header kategori stok
     data class StockHeader(val title: String)
-
-    // ViewHolder untuk item minuman
     class DrinkViewHolder(val binding: ItemDrinkBinding) : RecyclerView.ViewHolder(binding.root)
-
-    // ViewHolder untuk header kategori stok
     class HeaderViewHolder(val binding: ItemHeaderBinding) : RecyclerView.ViewHolder(binding.root)
 
-    // Menentukan tipe tampilan (header atau item minuman)
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
             is StockHeader -> ITEM_VIEW_TYPE.HEADER.ordinal
@@ -39,7 +32,6 @@ class DrinkAdapter(
         }
     }
 
-    // Membuat ViewHolder berdasarkan tipe tampilan
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             ITEM_VIEW_TYPE.HEADER.ordinal -> {
@@ -53,7 +45,6 @@ class DrinkAdapter(
         }
     }
 
-    // Mengikat data pada ViewHolder
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is DrinkViewHolder -> {
@@ -96,7 +87,6 @@ class DrinkAdapter(
         }
     }
 
-    // Fungsi untuk mengelompokkan minuman berdasarkan kategori stok dan submit data
     fun submitDrinkData(items: List<MinumanEntity>) {
         val limitedStock = items.filter { it.jumlahStok < 35 }
         val mediumStock = items.filter { it.jumlahStok in 35..69 }
@@ -105,21 +95,20 @@ class DrinkAdapter(
         val list = mutableListOf<Any>()
 
         if (limitedStock.isNotEmpty()) {
-            list.add(StockHeader("Stok Terbatas"))  // Tambahkan header untuk stok terbatas
+            list.add(StockHeader("Stok Terbatas"))
             list.addAll(limitedStock)
         }
 
         if (mediumStock.isNotEmpty()) {
-            list.add(StockHeader("Stok Cukup"))  // Tambahkan header untuk stok cukup
+            list.add(StockHeader("Stok Cukup"))
             list.addAll(mediumStock)
         }
 
         if (sufficientStock.isNotEmpty()) {
-            list.add(StockHeader("Stok Terpenuhi"))  // Tambahkan header untuk stok terpenuhi
+            list.add(StockHeader("Stok Terpenuhi"))
             list.addAll(sufficientStock)
         }
 
-        // Submit list yang sudah dikelompokkan
         submitList(list)
     }
 }

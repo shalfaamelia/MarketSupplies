@@ -3,6 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="navy">#507687</color>
-    <color name="bone">#FCFAEE</color>"
+    <color name="bone">#FCFAEE</color>
     <color name="red">#B8001F</color>
+    <color name="default_icon_color">#808080</color>
+    <color name="creame">#FCFBF3</color>
 </resources>

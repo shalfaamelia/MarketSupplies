@@ -9,7 +9,6 @@ import com.shalfa.marketsupplies.entity.KebutuhanEntity
 import com.shalfa.marketsupplies.view_model.DailyNeedsViewModel
 
 class AddDailyNeedsActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityAddDailyneedsBinding
     private val viewModel: DailyNeedsViewModel by viewModels()
     private var dailyNeedsId: Int? = null
